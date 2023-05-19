@@ -19,9 +19,9 @@ func getShare(c *gin.Context) {
 	if err != nil {
 		switch err.(type) {
 		case *ShareNotFoundError:
-			c.String(http.StatusNotFound, "share %s not found", id)
+			c.String(http.StatusNotFound, "share not found")
 		default:
-			c.String(http.StatusInternalServerError, "unable to retrieve share %s due to internal server error. check the server logs", id)
+			c.String(http.StatusInternalServerError, "unable to retrieve share due to internal server error. check the server logs")
 		}
 
 		log.WithFields(log.Fields{
