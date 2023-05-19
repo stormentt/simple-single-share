@@ -65,6 +65,7 @@ func initConfig() {
 		viper.SetConfigName(".simple-single-share")
 	}
 
+	viper.SetEnvPrefix("SSS")
 	viper.AutomaticEnv() // read in environment variables that match
 
 	// If a config file is found, read it in.
