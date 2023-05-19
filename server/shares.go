@@ -1,18 +1,15 @@
 package server
 
 import (
-	"fmt"
 	"sync"
 
 	"github.com/google/uuid"
 )
 
-type ShareNotFoundError struct {
-	ID string
-}
+type ShareNotFoundError struct{}
 
 func (e *ShareNotFoundError) Error() string {
-	return fmt.Sprintf("share [%s] not found", e.ID)
+	return "share not found"
 }
 
 type Share struct {
@@ -57,7 +54,7 @@ func (ss *ShareStore) GetShare(id string) (Share, error) {
 
 	share, ok := ss.ShareMap[id]
 	if !ok {
-		return Share{}, &ShareNotFoundError{id}
+		return Share{}, &ShareNotFoundError{}
 	}
 
 	return share, nil
