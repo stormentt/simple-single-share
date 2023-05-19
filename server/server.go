@@ -38,7 +38,8 @@ func Serve() error {
 	}
 
 	r.GET("/share/:id", getShare)
-	r.POST("/share", postShare)
+	authRoutes := r.Group("/", CheckAPIKey)
+	authRoutes.POST("/share", postShare)
 
 	shareStore = NewShareStore()
 	r.Run()
