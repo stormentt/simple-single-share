@@ -38,3 +38,6 @@ yeah sure
 
 ## If too much data is uploaded won't this OOM?
 probably
+
+## I want transport encryption
+put a reverse proxy in front of it
