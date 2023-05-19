@@ -10,6 +10,7 @@ uploads:
 
 # Usage
 `simple-single-share server` will listen on port 8080
+
 The client isn't written yet so you will need to upload with curl
 
 ```sh
