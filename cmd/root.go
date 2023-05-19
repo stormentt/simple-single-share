@@ -43,7 +43,7 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-	log.SetLevel(log.DebugLevel)
+	log.SetLevel(log.InfoLevel)
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.ssh-cert-man.yaml)")
 }

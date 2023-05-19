@@ -19,6 +19,7 @@ package cmd
 import (
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 	"github.com/stormentt/simple-single-share/server"
 )
 
@@ -28,6 +29,8 @@ var serverCmd = &cobra.Command{
 	Short: "run a sss server",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
+		viper.BindEnv("uploads.api_key", "SSS_UPLOADS_API_KEY")
+
 		err := server.Serve()
 		if err != nil {
 			log.WithFields(log.Fields{

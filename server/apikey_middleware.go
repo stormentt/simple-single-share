@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
 
@@ -17,6 +18,12 @@ func CheckAPIKey(c *gin.Context) {
 	}
 
 	expectedKey := viper.GetString("uploads.api_key")
+
+	log.WithFields(log.Fields{
+		"provided": apiKey,
+		"expected": expectedKey,
+	}).Trace("api key compare")
+
 	if subtle.ConstantTimeCompare([]byte(apiKey), []byte(expectedKey)) != 1 {
 		c.String(http.StatusUnauthorized, "Invalid API Key provided")
 		c.Abort()
