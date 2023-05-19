@@ -10,6 +10,11 @@ import (
 func getShare(c *gin.Context) {
 	id := c.Param("id")
 
+	if len(id) != 36 {
+		c.String(http.StatusBadRequest, "invalid share id")
+		return
+	}
+
 	share, err := shareStore.GetShare(id)
 	if err != nil {
 		switch err.(type) {
@@ -20,16 +25,10 @@ func getShare(c *gin.Context) {
 		}
 
 		log.WithFields(log.Fields{
-			"id":    id,
 			"error": err,
 		}).Error("unable to retrieve share")
 		return
 	}
-
-	log.WithFields(log.Fields{
-		"id":          id,
-		"ContentType": share.ContentType,
-	}).Debug("retrieved share")
 
 	shareStore.DeleteShare(id)
 	c.Data(http.StatusOK, share.ContentType, share.Content)
