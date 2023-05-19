@@ -11,4 +11,6 @@ FROM scratch
 WORKDIR /app
 COPY --from=builder /app/simple-single-share /app
 
+EXPOSE 8080
+
 ENTRYPOINT ["/app/simple-single-share", "server"]
