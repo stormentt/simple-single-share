@@ -32,3 +32,9 @@ No, that would make this complex-single-share instead of simple-single-share
 
 ## Retrieve the data more than once?
 No, that would make this simple-many-share instead of simple-single-share
+
+## Can't someone just guess my uuid?
+yeah sure
+
+## If too much data is uploaded won't this OOM?
+probably
