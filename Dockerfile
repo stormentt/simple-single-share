@@ -4,11 +4,11 @@ copy go.mod go.sum ./
 RUN go mod download && go mod verify
 
 COPY . .
-RUN go build -v -o /app/ ./...
+RUN CGO_ENABLED=0 go build -v -ldflags="-s -w" -o /app/ ./...
 
-FROM golang:1.20
+FROM scratch
 
 WORKDIR /app
-COPY --from=builder /app/simple-single-share /app/
+COPY --from=builder /app/simple-single-share /app
 
 ENTRYPOINT ["/app/simple-single-share", "server"]
